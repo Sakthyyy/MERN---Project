@@ -3,9 +3,10 @@ import { moviesValidate } from "../model/movies.model.js"
 // C - create for movies
 export const createMovies = async (req, res) => {
     try {
+        const { name, actor } = req.body
         const addMovie = new moviesValidate({
-            name: req.body.name,
-            actor: req.body.actor
+            name,
+            actor
         })
         const movie = await addMovie.save();
         res.status(201).json(movie);
@@ -27,11 +28,12 @@ export const getMovies = async (req, res) => {
 // U - update for movies
 export const updateMovies = async (req, res) => {
     try {
+        const { name, actor } = req.body
         const updateMovie = await moviesValidate.findByIdAndUpdate(
             { _id: req.params.id },
             {
-                name: req.body.name,
-                actor: req.body.actor
+                name,
+                actor
             },
             {
                 new: true

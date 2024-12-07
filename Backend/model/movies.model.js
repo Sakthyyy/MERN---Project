@@ -7,6 +7,7 @@ const schema = new Schema({
         unique: true
     },
     actor: String
-})
+},
+    { timestamps: true })
 
 export const moviesValidate = model("movie", schema)
